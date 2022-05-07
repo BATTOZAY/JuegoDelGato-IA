@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Prototipo de la FunciÛn para modificar la matriz en cada movimientos
+// Prototipo de la Funci√≥n para modificar la matriz en cada movimientos
 
 void movimientos (char matriz[3][3], char player1, char player2);
 
@@ -14,19 +14,19 @@ void impresion (char matriz[3][3], char jugador1, char jugador2);
 // Imprimir resultados
 int comprobador (int posicion, int rastro[8]);
 
-//FUNCI”N PRINCIPAL
+//FUNCI√ìN PRINCIPAL
 int main () {
     
    //BLOQUE DE VARIABLES
 
-   //declaro la matriz, con valores inciales para que los jugadores se guiÈn.
+   //declaro la matriz, con valores inciales para que los jugadores se gui√©n.
       char matriz [3][3] = { {'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'} };
       
       char player1, player2;
 
    //BLOQUE DE INSTRUCCIONES
 
-      // entrada del car·cter que usar· el jugador #1
+      // entrada del car√°cter que usar√° el jugador #1
 
       printf("\n---------HOLA, BIENVENIDO AL JUEGO GATO---------\n\n");
       printf("\nJugador #1 ingresa la ficha que quieres utilizar ( x u o ): ");
@@ -48,11 +48,11 @@ int main () {
 //---------------------------------------------------------------------------------------
 
 
-//FunciÛn para modificar la matriz en cada movimientos
+//Funci√≥n para modificar la matriz en cada movimientos
 void movimientos (char matriz[3][3], char player1, char player2)
    {
       //variables
-      int fila, columna, x, control = 0, posicion, r;
+      int fila, columna, x, control = 0, posicion, r, ganadorControl = 0;
       int rastro[8]={0};
       
       //INSTRUCCIONES
@@ -60,7 +60,7 @@ void movimientos (char matriz[3][3], char player1, char player2)
       //for de 9 repeteciones
          for ( x = 1; x <= 9; x++ )
             {
-               // ENTRADA DE POSICI”N
+               // ENTRADA DE POSICI√ìN
                      do{
                            while( control == 0)
                               {
@@ -72,7 +72,7 @@ void movimientos (char matriz[3][3], char player1, char player2)
                                  // entrada de la posicion
                                  printf("\n  Ingresa el # de la posicion que deseas: ");
                                     scanf ("%d", &posicion);
-                                 // comprobamos si la posiciÛn existe
+                                 // comprobamos si la posici√≥n existe
                                  if( posicion >= 1 && posicion <= 9 )
                                     control = 1;
                                  else
@@ -82,7 +82,7 @@ void movimientos (char matriz[3][3], char player1, char player2)
 	                                    printf("\n    ______________________________________\n");
 									 }
                               }
-                     // comprobamos si la posciÛn est· ocupada y imprimimos si lo est·
+                     // comprobamos si la posci√≥n est√° ocupada y imprimimos si lo est√°
 							if( comprobador (posicion, rastro) == 1)
 								{
 									printf("\n   ______________________________________\n");
@@ -91,14 +91,14 @@ void movimientos (char matriz[3][3], char player1, char player2)
 									control = 0;
 								}
 								
-                        }while( comprobador (posicion, rastro) != 0 ); //COMPROBAMOS SI ESA POSICI”N EST¡ OCUPADA
+                        }while( comprobador (posicion, rastro) != 0 ); //COMPROBAMOS SI ESA POSICI√ìN EST√Å OCUPADA
                 
-            //ingreso una posiciÛn ocupada
+            //ingreso una posici√≥n ocupada
                rastro [x-1] = posicion;
               
-            //decido cual es la posiciÛn en la matriz
+            //decido cual es la posici√≥n en la matriz
 
-            switch(posicion) //donde opciÛn es la variable a comparar
+            switch(posicion) //donde opci√≥n es la variable a comparar
                {
                   case 1: fila = 0; columna = 0;
                            break;
@@ -127,9 +127,9 @@ void movimientos (char matriz[3][3], char player1, char player2)
                            break;
                }
 
-               // ELECCI”N DE CARACTER A INTRODUCIR
+               // ELECCI√ìN DE CARACTER A INTRODUCIR
               
-               if( (x % 2) != 0 ) // veo si la interacciÛn es par para saber cual es el jugador
+               if( (x % 2) != 0 ) // veo si la interacci√≥n es par para saber cual es el jugador
                   matriz[fila][columna] = player1;
                else
                   matriz[fila][columna] = player2;
@@ -138,7 +138,7 @@ void movimientos (char matriz[3][3], char player1, char player2)
                impresion (matriz, player1, player2);
                control = 0;
 
-                // QUI…N GANA ?, LUEGO DE X>=3 
+                // QUI√âN GANA ?, LUEGO DE X>=3 
                if (x >= 3)
                   {
                      // GANA X ?
@@ -152,11 +152,12 @@ void movimientos (char matriz[3][3], char player1, char player2)
                      
                      || matriz[0][0] == player1 && matriz[0][0] == matriz[1][1] && matriz[0][0] == matriz[2][2]
                      || matriz[0][2] == player1 && matriz[0][2] == matriz[1][1] && matriz[0][2] == matriz[2][0])
-                     {
-                        printf("\n\n           ==========================\n");
-                        printf("\n             El Jugador 1 Ha Ganado\n");
-                        printf("\n           ==========================\n");
-                        x = 9;
+                     	{
+	                        printf("\n\n           ==========================\n");
+	                        printf("\n             El Jugador 1 Ha Ganado\n");
+	                        printf("\n           ==========================\n");
+	                        x = 9;
+	                        ganadorControl = 1;
 			            }
                      
                      // GANA 0 ?
@@ -170,12 +171,19 @@ void movimientos (char matriz[3][3], char player1, char player2)
                      
                      || matriz[0][0] == player2 && matriz[0][0] == matriz[1][1] && matriz[0][0] == matriz[2][2]
                      || matriz[0][2] == player2 && matriz[0][2] == matriz[1][1] && matriz[0][2] == matriz[2][0])
-                     {
-                        printf("\n\n           ==========================\n");
-                        printf("\n             El Jugador 2 Ha Ganado\n");
-                        printf("\n           ==========================\n");
-                        x = 9;
-                     }
+	                     {
+	                        printf("\n\n           ==========================\n");
+	                        printf("\n             El Jugador 2 Ha Ganado\n");
+	                        printf("\n           ==========================\n");
+	                        x = 9;
+	                        ganadorControl = 1;
+	                     }
+	                  if( ganadorControl == 0 && x ==9)
+						  {
+						  	printf("\n\n           ==========================\n");
+	                        printf("\n                      EMPATE\n");
+	                        printf("\n           ==========================\n");
+						  }
                   }
             
             }
@@ -186,7 +194,7 @@ void movimientos (char matriz[3][3], char player1, char player2)
 //----------------------------------------------------------------------------------------
 
 
-//FUNCI”N PARA LA IMPRESI”N
+//FUNCI√ìN PARA LA IMPRESI√ìN
 void impresion (char matriz[3][3], char jugador1, char jugador2 )
    {
       //variables
@@ -218,12 +226,12 @@ void impresion (char matriz[3][3], char jugador1, char jugador2 )
    }
 
 //------------------------------------------------------------------------------
-//FUNCI”N PARA COMPROBAR SI LA POSICI”N EST¡ OCUPADA
+//FUNCI√ìN PARA COMPROBAR SI LA POSICI√ìN EST√Å OCUPADA
    int comprobador (int posicion, int rastro[8])
       {
          //VARIABLES
          int r, valor = 0;
-         //FOR PARA VER SI EST¡ OCUPADA
+         //FOR PARA VER SI EST√Å OCUPADA
          for (r = 0; r < 8; r++ )
                   {
                   		if(valor == 0)
